@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+    <title>Add Student</title>
+</head>
+<body>
+  <form action = "/student-add" method="POST">
+    <input type='text' name='firstname' value="{{ request.form.get('firstname', '') }}">First Name:
+    <input type='text' name='lastname' value="{{ request.form.get(
+    'lastname', '') }}">Last Name:
+    <input type ='text' name='github' value="{{ request.form.get(
+    'github', '') }}">Github: 
+    <input type='submit' name='submit'>
+  </form>
+</body>
+</html>
