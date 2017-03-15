@@ -9,12 +9,13 @@ app = Flask(__name__)
 def get_student():
     """Show information about a student."""
 
-    github = request.args.get('github', 'jhacks')
-    first, last, github = hackbright.get_student_by_github(github)
-    html = render_template("student_info.html", first=first,
-                            last=last, github=github)
-    return html
+    sql = "SELECT first_name, last_name, github FROM students"
+    cursor = hackbright.db.session.execute(sql)
+    student = cursor.fetchall()
 
+    # github = request.args.get('github', 'jhacks')
+    # first, last, github = hackbright.get_student_by_github(github)
+    return render_template("student_info.html", student=student)
 
 @app.route("/student-search")
 def get_student_form():
@@ -48,7 +49,8 @@ def add_new_student_info():
 
     hackbright.db.session.commit()
 
-    return redirect('/student')
+    return render_template('student_add_confirmation.html', first=first,
+                            last=last, github=github)
 
 
 if __name__ == "__main__":
