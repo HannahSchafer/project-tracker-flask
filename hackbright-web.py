@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 
 import hackbright
 
@@ -38,9 +38,17 @@ def add_new_student_info():
     last = request.form.get("lastname")
     github = request.form.get("github")
 
-    sql = """INSERT INTO hackbright ()
+    sql = """INSERT INTO students (first_name, last_name, github)
+            VALUES (:first_name, :last_name, :github)"""
 
-    return render_template("student_add.html")
+    hackbright.db.session.execute(sql,
+                       {'first_name': first,
+                        'last_name': last,
+                         'github': github})
+
+    hackbright.db.session.commit()
+
+    return redirect('/student')
 
 
 if __name__ == "__main__":

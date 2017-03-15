@@ -5,11 +5,9 @@
 </head>
 <body>
   <form action = "/student-add" method="POST">
-    <input type='text' name='firstname' value="{{ request.form.get('firstname', '') }}">First Name:
-    <input type='text' name='lastname' value="{{ request.form.get(
-    'lastname', '') }}">Last Name:
-    <input type ='text' name='github' value="{{ request.form.get(
-    'github', '') }}">Github: 
+    First Name:<input type='text' name='firstname'>
+    Last Name:<input type='text' name='lastname'>
+    Github:<input type ='text' name='github'> 
     <input type='submit' name='submit'>
   </form>
 </body>
