@@ -5,11 +5,12 @@
 </head>
 <body>
   <h1>Student Info: {{ student[0] }} {{ student[1] }} {{ student[2] }}</h1>
-  <ul>{% for title, grade in grades %}
-    <li>Project: {{ title }}
-    </li>
-    <li>Grade: {{ grade }}
-    </li><br>
+  <ul>
+    {% for title, grade in grades %}
+        <li>Project: {{ title }}
+        </li>
+        <li>Grade: {{ grade }}
+        </li><br>
     {% endfor %}
   </ul>
 
