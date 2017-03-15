@@ -9,11 +9,13 @@ app = Flask(__name__)
 def get_student():
     """Show information about a student."""
 
-    sql = "SELECT first_name, last_name, github FROM students"
-    cursor = hackbright.db.session.execute(sql)
-    student = cursor.fetchall()
+    github = request.args.get('github')
+    color = request.args.get('color')
+    print 'I like', color
+    sql = "SELECT first_name, last_name, github FROM students where github=:github"
+    cursor = hackbright.db.session.execute(sql, {'github': github})
+    student = cursor.fetchone()
 
-    # github = request.args.get('github', 'jhacks')
     # first, last, github = hackbright.get_student_by_github(github)
     return render_template("student_info.html", student=student)
 
